@@ -1,5 +1,8 @@
 package entity;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -7,31 +10,31 @@ import java.io.Serializable;
  * Created by Sviatoslav on 09.04.2017.
  */
 @Entity()
-@Table()
+@DynamicUpdate
+@DynamicInsert
 public class Users implements Serializable{
 
     @Id()
-    @Column()
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 20)
+    @Column(name = "User_Name")
     private String name;
 
-    @Column(length = 20)
+    @Column(name = "Last_Name")
     private String lastName;
 
-    @Column()
+    @Column(name = "Age")
     private int age;
 
-    @Column(length = 50)
+    @Column(name = "Address")
     private String address;
 
     public Users() {
     }
 
-    public Users(int id, String name, String lastName, int age, String address) {
-        this.id = id;
+    public Users(String name, String lastName, int age, String address) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
@@ -103,8 +106,8 @@ public class Users implements Serializable{
     @Override
     public String toString() {
         return  "Name: " + name +
-                "Last Name: " + lastName +
-                "Age: " + age +
-                "Address:" + address;
+                ", Last Name: " + lastName +
+                ", Age: " + age +
+                ", Address:" + address;
     }
 }

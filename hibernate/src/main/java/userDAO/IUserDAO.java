@@ -9,11 +9,11 @@ import java.util.List;
  */
 public interface IUserDAO {
 
-    Users create();
+    Users create(String name, String lastName, int age, String address);
 
     Users read(int index);
 
-    Users update(int index);
+    Users update(int index, String name, String lastName, int age, String address);
 
     Users delete(int index);
 
