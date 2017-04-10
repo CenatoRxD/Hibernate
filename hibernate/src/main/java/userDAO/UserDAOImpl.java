@@ -82,6 +82,7 @@ public class UserDAOImpl implements IUserDAO {
         Root<Users> root = cq.from(Users.class);
         Query query = session.createQuery(cq.select(root));
         users = query.getResultList();
+        session.getTransaction().commit();
         session.close();
         return users;
     }
